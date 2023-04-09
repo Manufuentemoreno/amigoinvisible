@@ -5,23 +5,31 @@ const mainController = require("../controllers/mainController");
 
 const mailValidation = require("../middlewares/friendValidation");
 
-// listar amigos
+// INDEX - LANDING
 router.get("/", mainController.index);
 
+// INGRESAR A UNA SESION YA CREADA
+router.post("/", mainController.login);
+
+// Vista para crear una nueva sesion
+router.get('/create', mainController.configurate)
+
+// CREAR UNA NUEVA SESION
 router.post("/create", mainController.create)
 
+// LISTA DE AMIGOS
 router.get("/:id", mainController.home)
 
-// agregar amigos
-router.post("/:id", mailValidation,  mainController.addFiend);
+// AGREGARSE A LA LISTA
+router.post('/:id', mainController.addFiend)
 
-// modificar amigos
+// modificar data de amigos
 router.put("/", mainController.modifyFriend);
 
-// eliminar amigos
+// eliminar data de amigos
 router.delete("/", mainController.deleteFriend);
 
-// sortear
+// SORTEAR
 router.post("/sorteo", mainController.sorteo);
 
 module.exports = router;

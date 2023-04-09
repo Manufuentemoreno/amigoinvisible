@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termina de configurar</title>
+</head>
+<body>
+    <form action="/create" method="post">
+        <p>Organizá un Amigo Invisible</p>
+        <label for="title" id="title">Titulo:</label>
+        <input type="text" id="title" name="title" placeholder="Ingresá un título" value= <%= locals.oldData ? oldData.title : null %>>
+        
+        <label for="name" id="name">Nombre de quien organiza:</label>
+        <input type="text" name="name" id="name" placeholder="Ingresá tu nombre" value= <%= locals.oldData ? oldData.name : null %>>
+        
+        <label for="mail" id="mail">Mail de quien organiza:</label>
+        <input type="mail" name="mail" id="mail" placeholder="Ingresá tu mail" value= <%= locals.oldData ? oldData.mail : null %>>
+        
+        <label for="password">Crea la contraseña de la sesión</label>
+        <input type="password" name="password" placeholder="contraseña">
+
+        <label for="repassword">Repite la contraseña</label>
+        <input type="password" name="repassword" placeholder="repite contraseña">
+        
+        <% if (locals.error) { %>
+            <p><%= error %></p>
+        <% } %>
+        <button type="submit">Crear</button>
+    </form>
+</body>
+</html>
