@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/theme.css" />
+
+    <title><%= data.title %></title>
+    <script src="/javascript/HomeSorteo.js" type="text/javascript"></script>
+</head>
+<body>
+    <header class="header">
+        <h1 class="titulo"><%= data.title %></h1>
+    </header>
+    <main>
+        <form action="/:id" method="post" class="add-friend">
+            <label id="name">Nombre:<input type="text" name="name" id="name" placeholder="Ingresá tu nombre"></label>
+            <% if (locals.errors && locals.errors.name) { %>
+                <p class="error"><%= errors.name.msg %> </p>
+            <% } %>
+
+            <label id="mail">Mail:<input type="mail" name="mail" id="mail" placeholder="Ingresá tu mail"></label>
+            <% if (locals.errors && locals.errors.mail) { %>
+                <p class="error"><%= errors.mail.msg %> </p>
+            <% } %>
+                       
+            <button type="submit">Anotarse</button>
+        </form>
+        <h3 class="anotados">Anotados hasta ahora:</h3>
+        <% if (locals.friends) { %>
+            <ul>
+            <% friends.forEach(user => { %>
+                <li><%= user.name %></li>
+            <%})%>
+            </ul>
+        <%}else{ %>
+            <p>todavía nadie...</p>
+        <% } %> 
+        <button class="check-button" id="check-button" type="button">Hacer el sorteo!</button>
+        <form class="checkAdmin" id="checkAdmin" action="/sorteo" method="post">
+            <p>Solo el administrador del grupo puede hacer el sorteo</p>
+            <label for="key">Ingrasá la contraseña<input id="key" type="number"></label>
+            <button>Hacer el sorteo</button>
+        </form>
+    </main>
+</body>
+</html>

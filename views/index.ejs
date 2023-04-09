@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amigo Invisible</title>
+</head>
+<body>
+    <h1>Organizar Amigo Invisible</h1>
+    <article>
+        <form action="/create" method="post">
+            <p>Organizá un Amigo Invisible</p>
+            <label for="title" id="title">Titulo:</label>
+            <input type="text" id="title" name="title" placeholder="Ingresá un título">
+            <label for="name" id="name">Tu nombre:</label>
+            <input type="text" name="name" id="name" placeholder="Ingresá tu nombre">
+            <label for="mail" id="mail">Tu mail:</label>
+            <input type="mail" name="mail" id="mail" placeholder="Ingresá tu mail">
+            
+            <button type="submit">Crear</button>
+        </form>
+        <p>Si ya armaste una sesión:</p>
+        <form action="/:id" method="post">
+            <label for="id">Ingresá el ID de la sesión</label>
+            <input type="number" name="id" id="id">
+            <button type="submit">Ingresar</button>
+        </form>
+    </article>
+</body>
+</html>
