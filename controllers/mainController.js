@@ -14,34 +14,34 @@ module.exports = {
         const mail = req.body.mail;
         const name = req.body.name;
         const titulo = req.body.title;
-        const pass = req.body.password;
-        const repass = req.body.repassword;
-        
-        if(pass && pass!=repass){
-            return res.render("create", {error: "Las contraseñas no coinciden", oldData:{title: titulo,name: name,mail: mail}})
+
+        const errors = validationResult(req);
+        if (!errors.isEmpty()){
+            res.render("create", { "errors" : errors.mapped(),oldData:{title: titulo,name: name,mail: mail}});
+            return 
         }
+        
+        const pass = req.body.password;
+        
+        let bd = JSON.parse(fs.readFileSync(__dirname + data,'utf8'));
+        const id = bd.length;
 
-        res.send(req.body)
+        const newList = {
+            id: id,
+            mail: mail,
+            title: titulo,
+            password: pass,
+            friends: [{
+                name: name,
+                mail: mail,
+                category: "admin"
+            }]
+        };
 
-        // let bd = JSON.parse(fs.readFileSync(__dirname + data,'utf8'));
-        // const id = bd.length;
+        bd.push(newList);
 
-        // const newList = {
-        //     id: id,
-        //     mail: mail,
-        //     title: titulo,
-        //     password: "",
-        //     friends: [{
-        //         name: name,
-        //         mail: mail,
-        //         category: "admin"
-        //     }]
-        // };
-
-        // bd.push(newList);
-
-        // fs.writeFileSync(__dirname + data, JSON.stringify(bd));
-        // res.redirect("/"+id);
+        fs.writeFileSync(__dirname + data, JSON.stringify(bd));
+        res.redirect("/"+id);
     },
 
     configurate: (req, res)=>{
@@ -88,7 +88,6 @@ module.exports = {
         let list = JSON.parse(fs.readFileSync(__dirname + data,'utf8'));
         
         const errors = validationResult(req);
-        console.log(errors.mapped());
         if (!errors.isEmpty()){
             res.render("home", { "errors" : errors.mapped(), friends: list});
             return 

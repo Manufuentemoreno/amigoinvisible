@@ -1,1 +1,15 @@
-[]
+[
+    {
+        "id": 0,
+        "mail": "manu@mail.com",
+        "title": "mi cumple",
+        "password": "abc1",
+        "friends": [
+            {
+                "name": "manu",
+                "mail": "manu@mail.com",
+                "category": "admin"
+            }
+        ]
+    }
+]

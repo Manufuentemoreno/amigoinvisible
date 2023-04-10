@@ -11,18 +11,33 @@
         <p>Organizá un Amigo Invisible</p>
         <label for="title" id="title">Titulo:</label>
         <input type="text" id="title" name="title" placeholder="Ingresá un título" value= <%= locals.oldData ? oldData.title : null %>>
+        <% if (locals.errors && errors.title ) { %>
+            <p><%= errors.title.msg %></p>
+        <% } %>
         
         <label for="name" id="name">Nombre de quien organiza:</label>
         <input type="text" name="name" id="name" placeholder="Ingresá tu nombre" value= <%= locals.oldData ? oldData.name : null %>>
+        <% if (locals.errors && errors.name ) { %>
+            <p><%= errors.name.msg %></p>
+        <% } %>
         
         <label for="mail" id="mail">Mail de quien organiza:</label>
         <input type="mail" name="mail" id="mail" placeholder="Ingresá tu mail" value= <%= locals.oldData ? oldData.mail : null %>>
+        <% if (locals.errors && errors.mail ) { %>
+            <p><%= errors.mail.msg %></p>
+        <% } %>
         
         <label for="password">Crea la contraseña de la sesión</label>
         <input type="password" name="password" placeholder="contraseña">
+        <% if (locals.errors && errors.password ) { %>
+            <p><%= errors.password.msg %></p>
+        <% } %>
 
         <label for="repassword">Repite la contraseña</label>
         <input type="password" name="repassword" placeholder="repite contraseña">
+        <% if (locals.errors && errors.repassword ) { %>
+            <p><%= errors.repassword.msg %></p>
+        <% } %>
         
         <% if (locals.error) { %>
             <p><%= error %></p>

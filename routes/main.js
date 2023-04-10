@@ -4,6 +4,7 @@ const router = express.Router();
 const mainController = require("../controllers/mainController");
 
 const mailValidation = require("../middlewares/friendValidation");
+const adminValidation = require("../middlewares/adminValidation");
 
 // INDEX - LANDING
 router.get("/", mainController.index);
@@ -15,7 +16,7 @@ router.post("/", mainController.login);
 router.get('/create', mainController.configurate)
 
 // CREAR UNA NUEVA SESION
-router.post("/create", mainController.create)
+router.post("/create", adminValidation, mainController.create)
 
 // LISTA DE AMIGOS
 router.get("/:id", mainController.home)
